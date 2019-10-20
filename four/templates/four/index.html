@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Merriweather:400italic,400' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{%  static 'four/css/reset.css' %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'four/css/style.css' %}"> <!-- Resource style -->
+	<script src="{% static 'four/js/modernizr.js' %}"></script> <!-- Modernizr -->
+  	
+	<title>						{% if company_info.company_name %}
+									{{ company_info.company_name }}
+								{% else %}
+									网站标题
+								{% endif %} |
+
+								{% if company_info.company_key_word %}
+									{{ company_info.company_key_word }}
+								{% else %}
+									SEO推广词
+								{% endif %}
+
+	</title>
+
+</head>
+<body>
+	<div class="projects-container">
+		<ul>
+
+			{% if four_infos %}
+				{% for four_info in four_infos %}
+					<li class="cd-single-project is-loaded">
+						<div class="cd-title">
+							<h2>{{ four_info.four_title }}</h2>
+							<p>{{ four_info.four_one_words }}
+								<hr style="width:50%">
+							<a href="{% url 'home:home' %}"><h3 style="color: white">more</h3></a>
+							</p>
+
+						</div> <!-- .cd-title -->
+
+						<div class="cd-project-info">
+							<p>{{ four_info.four_detail_words }}</p>
+						</div> <!-- .cd-project-info -->
+					</li>
+				{% endfor %}
+			{% else %}
+				<h1>网站内容错误，请联系管理员</h1>
+			{% endif %}
+
+
+
+
+
+
+
+		</ul>
+		<a href="#0" class="cd-close">Close</a>
+		<a href="#0" class="cd-scroll">Scroll</a>
+	</div> <!-- .project-container -->
+<script src="{% static 'four/js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'four/js/main.js' %}"></script> <!-- Resource jQuery -->
+</body>
+</html>

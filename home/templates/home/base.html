@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'home/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'home/lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'home/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'home/lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'home/lib/hover/hover.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+
+  <!-- Responsive css -->
+  <link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'home/images/favicon.png' %}">
+    {% block css_home_content %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+  <!-- start section navbar -->
+  <nav id="main-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="logo">
+          <a href="{% url 'home:home' %}"><img src="{% static 'home/images/logo.png' %}" alt="logo"></a>
+        </div>
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="{% url 'home:home' %}" class="smoothScroll">首页</a></li>
+          <li><a href="{% url 'home:home' %}#about" class="smoothScroll">关于我们</a></li>
+          <li><a href="{% url 'home:home' %}#portfolio" class="smoothScroll">作品</a></li>
+          <li><a href="{% url 'home:products' %}" class="smoothScroll">方案</a></li>
+          <li><a href="{% url 'home:home' %}#contact" class="smoothScroll">联系我们</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- End section navbar -->
+
+
+{% block home_content %}
+replace this
+{% endblock %}
+
+
+  <!-- start sectoion contact -->
+  <div id="contact" class="paddsection">
+    <div class="container">
+      <div class="contact-block1">
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="contact-contact">
+
+              <h2 class="mb-30">联系我们</h2>
+
+              <ul class="contact-details">
+                {% if my_info %}
+                <li><span>中国.浙江</span></li>
+                <li><span>{{ my_info.my_add }}</span></li>
+                <li><span>{{ my_info.my_email }}</span></li>
+                <li><span>{{ my_info.my_phone }}</span></li>
+                  <li ><a href="http://wpa.qq.com/msgrd?v=3&uin={{ my_info.my_qq }}&site=qq&menu=yes"><span style="color:black">QQ交谈</span></a></li>
+                {% else %}
+
+                {% endif %}
+              </ul>
+
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form action="/home" method="POST"  class="contactForm">
+              {% csrf_token %}
+              <div class="row">
+
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+
+                <div class="col-lg-6">
+                  <div class="form-group contact-block1">
+                    <input id="id_client_name" name="client_name" type="text" class="form-control"  placeholder="您的称呼" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                     <!--
+                     <input id="id_subject" type="text" name="subject" maxlength="100" required />
+                     -->
+                    <div class="validation"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input id="id_client_email" name="client_email" type="email" class="form-control"   placeholder="您的电子邮件" data-rule="email" data-msg="Please enter a valid email" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <input id="id_client_phone" name="client_phone"  type="text" class="form-control" placeholder="您的电话号码，我们会尽快和您取得联系" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <textarea id="id_client_message" name="client_message" class="form-control" rows="12" data-rule="required" data-msg="Please write something for us" placeholder="您的留言"></textarea>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <input type="submit" class="btn btn-defeault btn-send" value="发送信息">
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- start sectoion contact -->
+
+
+  <!-- start section footer -->
+  <div id="footer" class="text-center">
+    <div class="container">
+      <!--
+      <div class="socials-media text-center">
+
+        <ul class="list-unstyled">
+          <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+          <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+          <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+          <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+          <li><a href="#"><i class="ion-social-tumblr"></i></a></li>
+          <li><a href="#"><i class="ion-social-dribbble"></i></a></li>
+        </ul>
+
+      </div>
+      -->
+
+      {% if my_info %}
+        <p>&copy; 版权所有 {{ my_info.my_name }}   All rights reserved.</p>
+      {% else %}
+        <p>&copy; Copyrights J.P.Created   All rights reserved.</p>
+      {% endif %}
+
+      <div class="credits">
+
+        Designed by <a href="https://warmedyou.com/">JPC</a>
+      </div>
+
+    </div>
+  </div>
+  <!-- End section footer -->
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'home/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'home/lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'home/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'home/lib/typed/typed.js' %}"></script>
+  <script src="{% static 'home/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'home/lib/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'home/lib/isotope/isotope.pkgd.min.js' %}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'home/contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'home/js/main.js' %}"></script>
+
+    {% block js_home_content %}
+
+    {% endblock %}
+</body>
+
+</html>
